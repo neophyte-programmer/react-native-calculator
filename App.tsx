@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Switch } from 'react-native'
 import { ThemeContext } from './src/context/ThemeContext'
 import { colors } from './src/styles/Colors'
-import Button from './src/components/Button'
+import Keyboard from './src/components/Keyboard'
 
 export default function App() {
 	const [theme, setTheme] = useState('light')
@@ -17,14 +17,18 @@ export default function App() {
 				}
 			>
 				<StatusBar style='auto' />
-				<Switch
-					// If theme is equal to light , value of state will be true
-					value={theme === 'light'}
-					// Changing the value of the theme
-					onValueChange={() =>
-						setTheme(theme === 'light' ? 'dark' : 'light')
-					}
-        />
+        <View style={styles.header}>
+          <Text style={styles.heading} >Calculator</Text>
+					<Switch
+						// If theme is equal to light , value of state will be true
+						value={theme === 'light'}
+						// Changing the value of the theme
+						onValueChange={() =>
+							setTheme(theme === 'light' ? 'dark' : 'light')
+						}
+					/>
+				</View>
+				<Keyboard />
 			</View>
 		</ThemeContext.Provider>
 	)
@@ -35,6 +39,21 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: colors.light,
 		alignItems: 'center',
-		justifyContent: 'center',
-	},
+		justifyContent: 'flex-start',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: 60,
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignSelf: 'stretch',
+		backgroundColor: colors.gray,
+
+  },
+  heading: {
+    color: colors.white,
+    fontSize: 30,
+  }
 })
