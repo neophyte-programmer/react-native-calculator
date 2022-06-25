@@ -25,7 +25,6 @@ export default function App() {
 						setTheme(theme === 'light' ? 'dark' : 'light')
 					}
         />
-        <Button title='5' onPress={() => {alert('You pressed 5')}} />
 			</View>
 		</ThemeContext.Provider>
 	)
