@@ -58,8 +58,73 @@ const Keyboard = () => {
 		}
 	}
 
+	// Display numbers
+	const firstNumberDisplay = () => {
+		if (result !== null) {
+			return (
+				<Text
+					style={
+						result < 99999
+							? [
+									Styles.screenFirstNumber,
+									{ color: colors.result },
+							  ]
+							: [
+									Styles.screenFirstNumber,
+									{ fontSize: 50, color: colors.result },
+							  ]
+					}
+				>
+					{result?.toString()}
+				</Text>
+			)
+		}
+		if (firstNumber && firstNumber.length < 6) {
+			return <Text style={Styles.screenFirstNumber}>{firstNumber}</Text>
+		}
+		if (firstNumber === '') {
+			return <Text style={Styles.screenFirstNumber}>{'0'}</Text>
+		}
+		if (firstNumber.length > 5 && firstNumber.length < 8) {
+			return (
+				<Text style={[Styles.screenFirstNumber, { fontSize: 70 }]}>
+					{firstNumber}
+				</Text>
+			)
+		}
+		if (firstNumber.length > 7) {
+			return (
+				<Text style={[Styles.screenFirstNumber, { fontSize: 50 }]}>
+					{firstNumber}
+				</Text>
+			)
+		}
+	}
+
 	return (
 		<View style={Styles.viewBottom}>
+			<View
+				style={{
+					height: 120,
+					width: '90%',
+					justifyContent: 'flex-end',
+					alignSelf: 'center',
+				}}
+			>
+				<Text style={Styles.screenSecondNumber}>
+					{secondNumber}
+					<Text
+						style={{
+							color: 'purple',
+							fontSize: 50,
+							fontWeight: '500',
+						}}
+					>
+						{operation}
+					</Text>
+				</Text>
+				{firstNumberDisplay()}
+			</View>
 			<View style={Styles.row}>
 				<Button title='C' isGray onPress={clear} />
 				<Button
@@ -111,12 +176,11 @@ const Keyboard = () => {
 			<View style={Styles.row}>
 				<Button title='.' onPress={() => handleNumberPress('.')} />
 				<Button title='0' onPress={() => handleNumberPress('0')} />
-				<Button title="⌫" onPress={() => setFirstNumber(firstNumber.slice(0, -1))}/>
 				<Button
-					title='='
-					isBlue
-					onPress={() => calculate()}
+					title='⌫'
+					onPress={() => setFirstNumber(firstNumber.slice(0, -1))}
 				/>
+				<Button title='=' isBlue onPress={() => calculate()} />
 			</View>
 		</View>
 	)
