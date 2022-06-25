@@ -59,7 +59,7 @@ const Keyboard = () => {
 	}
 
 	return (
-		<>
+		<View style={Styles.viewBottom}>
 			<View style={Styles.row}>
 				<Button title='C' isGray onPress={clear} />
 				<Button
@@ -118,7 +118,7 @@ const Keyboard = () => {
 					onPress={() => calculate()}
 				/>
 			</View>
-		</>
+		</View>
 	)
 }
 
