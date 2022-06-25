@@ -115,8 +115,8 @@ const Keyboard = () => {
 					{secondNumber}
 					<Text
 						style={{
-							color: 'purple',
-							fontSize: 50,
+							color: colors.blue,
+							fontSize: 40,
 							fontWeight: '500',
 						}}
 					>
